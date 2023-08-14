@@ -1,0 +1,45 @@
+scalar DateTime
+
+type User {
+  id: String!
+  spotifyRefreshToken: String!
+  spotifyUsername: String!
+  createdAt: String!
+  updatedAt: String!
+  playlists: [Playlist]
+}
+
+input UserInput {
+  spotifyRefreshToken: String
+  spotifyUsername: String!
+}
+
+type Playlist {
+  id: String!
+  userId: String!
+  ownedBy: User!
+  spotifyId: String!
+  songs: [Song!]!
+  createdAt: String!
+  updatedAt: String!
+  name: String!
+}
+
+type Song {
+  id: String!
+  name: String!
+  artist: String!
+  spotifyId: String!
+  playlists: [Playlist!]!
+}
+
+type Query {
+  user(id: String!): User
+  userPlaylists: [Playlist]
+}
+
+type Mutation {
+  createUser(input: UserInput!): User
+  updateUser(input: UserInput!): User
+  deleteUser(id: String!): User
+}
