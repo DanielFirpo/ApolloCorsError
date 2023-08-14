@@ -54,7 +54,9 @@ const bootstrapServer = async () => {
     next();
   }
 
-  app.use(cors());
+  // cors is sending it's own settings, and they will override the ones from
+  // the corsSettings function 😊
+  // app.use(cors());
   app.use(corsSettings);
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
